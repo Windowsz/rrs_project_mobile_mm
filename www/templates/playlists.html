@@ -1,0 +1,25 @@
+<ion-view view-title="รายชื่อห้องที่พบ" id="playlists">
+<ion-nav-bar class="bar-assertive"><ion-nav-buttons side="left"> 
+           <a ng-click="goBackState()" class="button button-icon icon ion-android-arrow-back"></a>
+      </ion-nav-buttons></ion-nav-bar> 
+  <ion-content>
+  <div class="spacer" style="height: 2px;"></div>
+<ion-list>
+      <ion-item ng-repeat="datas in ALL">
+<div class="list card" align="center">
+  <div class="item">
+    <h2>{{$index+1}} {{datas.Roomname}}</h2>
+    <p>วันที่เข้าใช้งาน : {{sday}}</p>
+    <p>จำนวนผู้ใช้งาน : {{datas.Support}}</p>
+  </div>
+  <div class="item item-text-wrap">
+  <h3>รายละเอียดของห้อง</h3>
+  <p>{{datas.detail}}</p>
+  <br>
+  <a class="button button-outline button-positive" ng-click="reserved(datas)">จองห้องนี้</a>
+  </div>
+  </div>
+  </ion-item>
+  </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,57 @@
+<ion-view title="ตั้งค่าโปรไฟล์" id="profile">
+  <ion-content>
+    <div class="spacer" style="width: 300px; height: 15px;"></div>
+     <form class="list" ng-submit="doProfile()">
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">ชื่อ - สกุล</span>
+          <input ng-bind="Name" id="name" type="text" value="{{Users.Name}}">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input ng-bind="username" id="username" type="text" value="{{Users.username}}">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">อีเมล</span>
+          <input ng-model="email" id="email" type="email"  value="{{Users.email}}">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">รหัสนักศึกษา</span>
+          <input ng-model="sid" id="sid" type="number" value="{{Users.SID}}">
+        </label>
+        <label class="item item-select">
+          <span class="input-label">คณะ</span>
+          <select ng-model="faculty" id="faculty">
+          <option value="engi">คณะวิศวกรรมศาสตร์</option>
+          <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
+          <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
+          <option value="scient">คณะวิทยาศาสตร์</option>
+          <option value="agotech">คณะเทคโนโลยีการเกษตร</option>
+          <option value="agoins">คณะอุตสาหกรรมเกษตร</option>
+          <option value="it">คณะเทคโนโลยีสารสนเทศ</option>
+          <option value="inter">วิทยาลัยนานาชาติ</option>
+          <option value="nano">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
+          <option value="business">วิทยาลัยการบริหารและจัดการ</option>
+          <option value="office">สำนักงานอธิการบดี</option>
+          </select>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">โทรศัพท์</span>
+          <input type="tel" ng-model="tel" id="tel" value="{{Users.tel}}">
+        </label>
+      <label class="item item-input">
+        <span class="input-label">รหัสผ่านเดิม</span>
+        <input id="oldpassword" type="password">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">รหัสผ่านใหม่</span>
+        <input ng-model="password" id="password" type="password">
+      </label>
+      </ion-list>
+      <div class="button-bar">
+      <button class="button button-positive  button-block" type="submit" href="#">ตกลง</button>
+      <a class="button button-positive  button-block" ng-click="canCel()">ยกเลิก</a>
+    </div>
+    </form>
+  </ion-content>
+</ion-view>

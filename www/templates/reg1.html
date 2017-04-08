@@ -1,0 +1,66 @@
+<ion-view title="สมัครสมาชิก" id="reg1">
+<ion-nav-bar class="bar-positive" align-title="left"><ion-nav-back-button class="button-clear"></ion-nav-back-button>
+		<ion-nav-title>สมัครสมาชิก</ion-nav-title>
+	</ion-nav-bar>
+  <ion-content padding="true" class="has-header">
+    <form class="list">
+      <ion-list>
+        <label class="item item-input">
+          <span class="input-label">ชื่อ - สกุล</span>
+          <input ng-model="name" id="name1" type="text">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Username</span>
+          <input ng-model="username" id="username1" type="text">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Password</span>
+          <input ng-model="password" id="password1" type="password">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">อีเมล</span>
+          <input ng-model="email" id="email1" type="email" placeholder="example@kmitl.ac.th">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">รหัสนักศึกษา</span>
+          <input ng-model="sid" id="sid1" type="number">
+        </label>
+        <label class="item item-select">
+          <span class="input-label">คณะ</span>
+          <select ng-model="faculty" id="faculty1">
+          <option value="engi">คณะวิศวกรรมศาสตร์</option>
+          <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
+          <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
+          <option value="scient">คณะวิทยาศาสตร์</option>
+          <option value="agotech">คณะเทคโนโลยีการเกษตร</option>
+          <option value="agoins">คณะอุตสาหกรรมเกษตร</option>
+          <option value="it">คณะเทคโนโลยีสารสนเทศ</option>
+          <option value="inter">วิทยาลัยนานาชาติ</option>
+          <option value="nano">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
+          <option value="business">วิทยาลัยการบริหารและจัดการ</option>
+          </select>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">โทรศัพท์</span>
+          <input type="tel" ng-model="tel" id="tel1">
+        </label>
+      </ion-list>
+      <div>
+        <ion-item class="item-text-wrap">
+        <div class="list">
+        <b>เงื่อนไขในการใช้บริการ</b><br>1. ต้องติดต่อเจ้าหน้าที่ ที่เคาน์เตอร์ชั้น 1 เพื่อขอรับบริการทุกครั้ง<br>2. ต้องมีผู้ใช้ห้องในคราวเดียวกันไม่ต่ํากว่า 5 คน<br>3. อนุญาตให้ใช้ห้องครั้งละ 2 ชั่วโมง<br>4. ให้บริการกลุ่มบุคคลตามจํานวนที่นั่งที่จัดไว้ในแต่ละห้องเท่านั้น ไม่อนุญาตให้นําเก้าอี้ภายนอกห้องมาเพิ่ม<br>5. ไม่นําอาหาร เครื่องดื่มมารับประทานในห้อง<br>6. หากนําหนังสือหรือวัสดุห้องสมุดอื่นๆ ที่ไม่มีการยืมมาใช้ในห้อง ให้นําไปวางไว้ที่ชั้นพักหนังสือในบริเวณใกล้เคียงทุกครั้งที่เลิกใช้<br>7. ไม่ส่งเสียงดังเกินควร<br>8. ไม่นําอุปกรณ์ไฟฟ้าใดๆ มาใช้ภายในห้อง ยกเว้นเครื่องคอมพิวเตอร์พกพา (Notebook)<br>9. โปรดช่วยกันดูแลการเปิดปิดไฟฟ้า เครื่องปรับอากาศ และรักษาความสะอาดทุกครั้งที่ใช้ห้อง<br>10. ผู้ใช้บริการต้องนําปากกาไวท์บอร์ดมาเอง<br>11. หากเจ้าหน้าที่ตรวจพบการกระทําใดๆ ที่ไม่เป็นไปตามข้อปฏิบัติข้างต้น สํานักหอสมุดกลางจะตัดสิทธิการใช้บริการ ห้องสัมมนากลุ่มย่อยของท่าน ในภาคการศึกษานั้นๆ
+            </div>
+        <li class="item item-checkbox">
+        ยอมรับข้อตกลง
+        <label class="checkbox">
+        <input type="checkbox" ng-model="checked">
+        </label>
+        </li>
+          <br>
+          <button ng-disabled="!checked" class="button button-block button-positive" ng-click="regist()">สมัครสมาชิก</button>
+          <button class="button button-block button-assertive" ng-click="canCel()">ยกเลิก</button>
+        </ion-item>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>
