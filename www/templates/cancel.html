@@ -1,21 +1,21 @@
 <ion-view title="สถานะการจองห้อง" id="cancel">
-    <ion-header-bar>
-      <h1 class="title">สถานะการจองห้อง</h1>
-    </ion-header-bar>
-    <ion-content>
-  <ion-item ng-repeat="datas in Reserved">
-<div class="list card" align="center">
-  <div class="item" >
-    <h2>{{$index+1}}. ID ห้อง : {{datas.RoomId}}</h2>
-    <p>วันที่เข้าใช้งาน : {{datas.Confirmdate}}</p>
-    <p>เวลาที่เข้าใช้งาน : {{datas.times}}</p>
-  </div>
-  <div class="item item-text-wrap">
-  <button class="button button-outline button-assertive" ng-click="del(datas)">ยกเลิกการจอง
+  <ion-header-bar>
+    <h1 class="title">สถานะการจองห้อง</h1>
+  </ion-header-bar>
+  <ion-content>
+    <ion-item ng-repeat="datas in Reserved">
+      <div class="list card" align="center">
+        <div class="item">
+          <h2>{{$index+1}}. ID ห้อง : {{datas.RoomId}}</h2>
+          <p>วันที่เข้าใช้งาน : {{datas.Confirmdate}}</p>
+          <p>เวลาที่เข้าใช้งาน : {{datas.times}}</p>
+        </div>
+        <div class="item item-text-wrap">
+          <button class="button button-outline button-assertive" ng-click="del(datas._id)">ยกเลิกการจอง
   </button>
-  </div>
-  </div>
-  </ion-item>
-  </ion-list>
-    </ion-content>
+        </div>
+      </div>
+    </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>

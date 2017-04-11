@@ -1,7 +1,7 @@
 <ion-view title="ตั้งค่าโปรไฟล์" id="profile">
   <ion-content>
     <div class="spacer" style="width: 300px; height: 15px;"></div>
-     <form class="list" ng-submit="doProfile()">
+    <form class="list" ng-submit="doProfile()">
       <ion-list>
         <label class="item item-input">
           <span class="input-label">ชื่อ - สกุล</span>
@@ -39,19 +39,19 @@
           <span class="input-label">โทรศัพท์</span>
           <input type="tel" ng-model="tel" id="tel" value="{{Users.tel}}">
         </label>
-      <label class="item item-input">
+        <label class="item item-input">
         <span class="input-label">รหัสผ่านเดิม</span>
         <input id="oldpassword" type="password">
       </label>
-      <label class="item item-input">
+        <label class="item item-input">
         <span class="input-label">รหัสผ่านใหม่</span>
         <input ng-model="password" id="password" type="password">
       </label>
       </ion-list>
       <div class="button-bar">
-      <button class="button button-positive  button-block" type="submit" href="#">ตกลง</button>
-      <a class="button button-positive  button-block" ng-click="canCel()">ยกเลิก</a>
-    </div>
+        <button class="button button-positive  button-block" type="submit" href="#">ตกลง</button>
+        <a class="button button-positive  button-block" ng-click="canCel()">ยกเลิก</a>
+      </div>
     </form>
   </ion-content>
 </ion-view>

@@ -1,26 +1,28 @@
 <ion-view title="Sign-In">
-        <ion-content><div align="center">
-        <img src="img/signinicon.png" style="width: 20%; margin-top:25%;"><h2 style="text-align:center; color: orange;">ระบบการจองห้อง</h2>
-        </div>
-        <div class="spacer" style="height: 5px"></div>
-        <form class="list" ng-submit="doLogin()">
-          <div class="card">
-            <label class="item item-input item-floating-label">
+  <ion-content>
+    <div align="center">
+      <img src="img/signinicon.png" style="width: 20%; margin-top:25%;">
+      <h2 style="text-align:center; color: orange;">ระบบการจองห้อง</h2>
+    </div>
+    <div class="spacer" style="height: 5px"></div>
+    <form class="list" ng-submit="doLogin()">
+      <div class="card">
+        <label class="item item-input item-floating-label">
               <span class="input-label">ชื่อผู้ใช้</span>
               <input  type="text" ng-model="login.username" placeholder="ชื่อผู้ใช้">
             </label>
-            <label class="item item-input item-floating-label">
+        <label class="item item-input item-floating-label">
               <span class="input-label label-block">รหัสผ่าน</span>
               <input type="password" ng-model="login.password" placeholder="รหัสผ่าน">
             </label>
-          </div>
-          <div class="padding">
-            <button class="button button-block button-assertive" type="submit" href="#">
+      </div>
+      <div class="padding">
+        <button class="button button-block button-assertive" type="submit" href="#">
               เข้าสู่ระบบ
             </button>
-            <div class="spacer" style="height: 50px"></div>
-            <a ui-sref="regchoose" style="text-align:right;" class="button button-dark button-block button-clear">สมัครสมาชิก</a>
-          </div>
-          </form>
-        </ion-content>
-      </ion-view>
+        <div class="spacer" style="height: 50px"></div>
+        <a ui-sref="regchoose" style="text-align:right;" class="button button-dark button-block button-clear">สมัครสมาชิก</a>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

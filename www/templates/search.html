@@ -1,30 +1,30 @@
 <ion-view view-title="ค้นหาห้องที่ต้องการจอง" id="search">
   <ion-content>
- <div class="spacer" style=" height: 2px;"></div>
- <div class="card">
-    <form id="searchform" class="list">
-    <label class="item item-select">
+    <div class="spacer" style=" height: 2px;"></div>
+    <div class="card">
+      <form id="searchform" class="list">
+        <label class="item item-select">
         ห้อง
       <select id="sroom" ng-model="s.room">
         <option value="studyroom">สัมนากลุ่มย่อย</option>
         <option value="meeting">ห้องประชุม</option>
       </select>
       </label>
-      <label class="item item-input">
+        <label class="item item-input">
         <span class="input-label">วันที่ต้องการเข้าใช้งาน</span>
         <input align="right" id="sday" type="date" min="2017-1-1" max="2020-12-31" required ng-model="s.day">
       </label>
-      <label class="item item-select">เวลาที่ต้องการเข้าใช้งาน
+        <label class="item item-select">เวลาที่ต้องการเข้าใช้งาน
       <input type="time" id="stime" step="1800" ng-model="s.time">
       </label>
-      <label class="item item-input">
+        <label class="item item-input">
         <span class="input-label">จำนวนผู้เข้าใช้งาน</span>
         <input type="tel" id="snum" ng-model="s.num">
       </label>
-    </form>
-    <div class="padding">
-  <button type="submit" class="button button-block button-positive" ng-click="searchs()">ค้นหา</button>
+      </form>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive" ng-click="searchs()">ค้นหา</button>
+      </div>
     </div>
-</div>
-</ion-content>
+  </ion-content>
 </ion-view>
