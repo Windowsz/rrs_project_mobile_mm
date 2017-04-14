@@ -327,26 +327,7 @@ angular.module('Roomreservation.controllers', [])
   })
 
   .controller('QrcodeCtrl', function($scope, $state, $interpolate) {
-    return {
-      restrict: 'E',
-      link: function($scope, $element, $attrs) {
-        var options = {
-          text: '',
-          width: 128,
-          height: 128,
-          colorDark: '#000000',
-          colorLight: '#ffffff',
-          correctLevel: 'H'
-        };
 
-        Object.keys(options).forEach(function(key) {
-          options[key] = $interpolate($attrs[key] || '')($scope) || options[key];
-        });
-
-        options.correctLevel = QRCode.CorrectLevel[options.correctLevel];
-        new QRCode($element[0], options);
-      }
-    };
   })
 
   .controller('LoginCtrl', function($rootScope, $scope, $state, $http, $ionicPopup) {
@@ -369,7 +350,7 @@ angular.module('Roomreservation.controllers', [])
         window.localStorage.setItem("role", false);
         window.localStorage.setItem("profile", JSON.stringify(response.data));
 
-        if (!$scope.login.username || !$scope.login.password || !response.data.username) {
+        if (!$scope.login.username || !$scope.login.password || response.data.username == null) {
           console.log('if fail');
           $scope.showAlertFail();
         }
