@@ -206,6 +206,7 @@ angular.module('Roomreservation.controllers', [])
     $rootScope.goBackState = function() {
       $ionicViewSwitcher.nextDirection('back');
       $ionicHistory.goBack();
+      window.location.reload(true);
     };
 
     $scope.showAlert = function() {
@@ -251,7 +252,17 @@ angular.module('Roomreservation.controllers', [])
 
   .controller('PlaylistCtrl', function($scope, $timeout, $http, $stateParams, $rootScope) {})
 
-  .controller('SearchCtrl', function($scope, $rootScope, $http, $state, $ionicViewSwitcher, $ionicHistory) {
+  .controller('SearchCtrl', function($scope, $rootScope, $http, $state, $ionicViewSwitcher, $ionicHistory, $ionicPopup) {
+////////////////////////// aleart ////////////////////////////////////////////////
+$scope.showAlert = function() {
+  var alertPopup = $ionicPopup.alert({
+    title: '',
+    template: 'กรุณากรอกข้อมูลให้ครบ'
+  });
+  alertPopup.then(function(res) {
+    window.location.reload(true);
+  });
+};
     //////////////////////////// goback state //////////////////////////////
     $scope.search = {};
     $scope.searchs = function() {
@@ -264,17 +275,18 @@ angular.module('Roomreservation.controllers', [])
       console.log($scope.sroom);
       console.log($scope.sday);
       console.log($scope.snum);
-
+      if($scope.sroom && $rootScope.sday && $scope.snum && $rootScope.time){
       var searchData = "http://localhost:3000/S/" + $scope.sroom + "/" + $scope.time + "/" + $rootScope.sday + "/" + $scope.snum;
       console.log(searchData);
 
       $http.get(searchData).success(function(ch) {
         $rootScope.ALL = ch;
-        $state.go('playlists', {
-          ch
-        });
+        $state.go('playlists', {ch});
         console.log(ch);
       })
+    }else {
+      $scope.showAlert();
+    }
     }
 
 
@@ -329,7 +341,6 @@ angular.module('Roomreservation.controllers', [])
   .controller('QrcodeCtrl', function($scope, $state, $interpolate) {
 
   })
-
   .controller('LoginCtrl', function($rootScope, $scope, $state, $http, $ionicPopup) {
     // Form data for the login modalz
     $scope.login = {};
@@ -349,7 +360,6 @@ angular.module('Roomreservation.controllers', [])
         };
         window.localStorage.setItem("role", false);
         window.localStorage.setItem("profile", JSON.stringify(response.data));
-
         if (!$scope.login.username || !$scope.login.password || response.data.username == null) {
           console.log('if fail');
           $scope.showAlertFail();
@@ -363,8 +373,6 @@ angular.module('Roomreservation.controllers', [])
           console.log('invalid');
           $scope.showAlertFail();
         }
-
       });
-
     };
   });
