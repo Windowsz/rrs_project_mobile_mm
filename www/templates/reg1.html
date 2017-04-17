@@ -8,23 +8,23 @@
       <ion-list>
         <label class="item item-input">
           <span class="input-label">ชื่อ - สกุล</span>
-          <input ng-model="name" id="name1" type="text">
+          <input ng-model="name" id="name1" type="text" pattern="[ก-ฮ,็-์,ะ-ไ,A-Z,a-z]">
         </label>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input ng-model="username" id="username1" type="text">
+          <input ng-model="username" id="username1" type="text" pattern="[a-z,A-Z,0-9]">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input ng-model="password" id="password1" type="password">
+          <input ng-model="password" id="password1" type="password" pattern="\S">
         </label>
         <label class="item item-input">
           <span class="input-label">อีเมล</span>
-          <input ng-model="email" id="email1" type="email" placeholder="example@kmitl.ac.th">
+          <input ng-model="email" id="email1" type="email" placeholder="example@kmitl.ac.th" pattern="\w+@+\w+.+\w">
         </label>
         <label class="item item-input">
           <span class="input-label">รหัสนักศึกษา</span>
-          <input ng-model="sid" id="sid1" type="number">
+          <input ng-model="sid" id="sid1" type="number" pattern="\d{8}">
         </label>
         <label class="item item-select">
           <span class="input-label">คณะ</span>
@@ -43,7 +43,7 @@
         </label>
         <label class="item item-input">
           <span class="input-label">โทรศัพท์</span>
-          <input type="tel" ng-model="tel" id="tel1">
+          <input type="tel" ng-model="tel" id="tel1" pattern="0+\d{9}">
         </label>
       </ion-list>
       <div>

@@ -5,23 +5,19 @@
       <ion-list>
         <label class="item item-input">
           <span class="input-label">ชื่อ - สกุล</span>
-          <input ng-bind="Name" id="name" type="text" value="{{Users.Name}}">
-        </label>
-        <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input ng-bind="username" id="username" type="text" value="{{Users.username}}">
+          <input ng-model="Users.Name" id="Name" type="text">
         </label>
         <label class="item item-input">
           <span class="input-label">อีเมล</span>
-          <input ng-model="email" id="email" type="email"  value="{{Users.email}}">
+          <input ng-model="Users.email" id="email" type="email">
         </label>
         <label class="item item-input">
           <span class="input-label">รหัสนักศึกษา</span>
-          <input ng-model="sid" id="sid" type="number" value="{{Users.SID}}">
+          <input ng-model="Users.SID" id="SID" type="text" pattern="\d{8}">
         </label>
         <label class="item item-select">
           <span class="input-label">คณะ</span>
-          <select ng-model="faculty" id="faculty">
+          <select ng-model="Users.faculty" id="faculty">
           <option value="engi">คณะวิศวกรรมศาสตร์</option>
           <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
           <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
@@ -37,7 +33,7 @@
         </label>
         <label class="item item-input">
           <span class="input-label">โทรศัพท์</span>
-          <input type="tel" ng-model="tel" id="tel" value="{{Users.tel}}">
+          <input type="tel" ng-model="Users.tel" id="tel">
         </label>
         <label class="item item-input">
         <span class="input-label">รหัสผ่านเดิม</span>
