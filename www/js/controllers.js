@@ -118,7 +118,7 @@ angular.module('Roomreservation.controllers', [])
           $scope.password = password2.value;
           $scope.Name = name2.value;
           $scope.email = email2.value;
-          $scope.working = working.value;
+          $scope.faculty = faculty2.value;
           $scope.tel = tel2.value;
 
           var parameter = ({
@@ -126,11 +126,11 @@ angular.module('Roomreservation.controllers', [])
             'password': $scope.password,
             'Name': $scope.Name,
             'email': $scope.email,
-            'working': $scope.working,
+            'working': $scope.faculty,
             'tel': $scope.tel
           });
           console.log(parameter);
-          if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.working || !$scope.tel) {
+          if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
             $scope.FailAlert();
           } else {
             $http({
@@ -168,20 +168,22 @@ angular.module('Roomreservation.controllers', [])
       });
     };
     $rootScope.Users
-    /*$scope.password = password.value;
-    $scope.Name = name.value;
-    $scope.tel = tel.value;
-    $scope.faculty = faculty.value;
-    $scope.email = email.value;
-*/
+    $scope.password = pfpassword.value;
+    $scope.Name = pfName.value;
+    $scope.tel = pftel.value;
+    $scope.faculty = pffaculty.value;
+    $scope.email = pfemail.value;
+    $scope.SID = pfSID.value;
+
     $scope.doProfile = function() {
-      var update = "http://localhost:3000/profile/" + $rootScope.Users._id;
+      var update = "http://localhost:3000/profile/" + $rootScope.Users.username;
       console.log(update);
-      console.log('password=' + password.value);
-      console.log('name=' + Name.value);
-      console.log(tel.value);
-      console.log(faculty.value);
-      console.log(email.value);
+      console.log('password=' + pfpassword.value);
+      console.log('name=' + pfName.value);
+      console.log(pftel.value);
+      console.log(pffaculty.value);
+      console.log(pfemail.value);
+      console.log(pfSID.value);
       /*if ($scope.password == $rootScope.Users.password) {
 
 
@@ -190,16 +192,16 @@ angular.module('Roomreservation.controllers', [])
         $scope.showAlertFail();
       }*/
       var updata = {
-        'password': password.value,
-        'name': Name.value,
-        'tel': tel.value,
-        'faculty': faculty.value,
-        'email': email.value,
-        'SID': SID.value
+        'password': $scope.password,
+        'Name': $scope.Name,
+        'tel': $scope.tel,
+        'faculty': $scope.faculty,
+        'email': $scope.email,
+        'SID': $scope.SID
       };
 
       $http({
-        method: 'PUT',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
@@ -227,7 +229,6 @@ angular.module('Roomreservation.controllers', [])
       });
     };
   })
-
   .controller('PlaylistsCtrl', function($rootScope, $ionicViewSwitcher, $ionicHistory, $scope, $stateParams, $http) {
     $rootScope.goBackState = function() {
       $ionicViewSwitcher.nextDirection('back');
