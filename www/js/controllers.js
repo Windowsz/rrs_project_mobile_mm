@@ -96,60 +96,60 @@ angular.module('Roomreservation.controllers', [])
 
   .controller('Reg2Ctrl', function($rootScope, $scope, $state, $ionicPopup, $http) {
 
-        $scope.regist = function() {
-          $scope.showAlert = function() {
-            var alertPopup = $ionicPopup.alert({
-              title: '',
-              template: 'สมัครสมาชิกเสร็จเรียบร้อย'
-            });
-            alertPopup.then(function(res) {
-              $state.go('login');
-            });
-          };
-          $scope.FailAlert = function() {
-            var alertPopup = $ionicPopup.alert({
-              title: '',
-              template: 'กรุณากรอกข้อมูลให้ถูกต้อง'
-            });
-          };
-          var registers = "http://localhost:3000/insertUSer";
-          console.log(registers);
-          $scope.username = username2.value;
-          $scope.password = password2.value;
-          $scope.Name = name2.value;
-          $scope.email = email2.value;
-          $scope.faculty = faculty2.value;
-          $scope.tel = tel2.value;
-
-          var parameter = ({
-            'username': $scope.username,
-            'password': $scope.password,
-            'Name': $scope.Name,
-            'email': $scope.email,
-            'working': $scope.faculty,
-            'tel': $scope.tel
-          });
-          console.log(parameter);
-          if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
-            $scope.FailAlert();
-          } else {
-            $http({
-              method: "POST",
-              headers: {
-                'Content-Type': 'application/json; charset=UTF-8'
-              },
-              url: registers,
-              data: parameter
-            }).success(function(response) {
-              console.log(parameter);
-              console.log(response);
-              $scope.showAlert();
-            });
-          }
-        };
-        $scope.canCel = function() {
+    $scope.regist = function() {
+      $scope.showAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: '',
+          template: 'สมัครสมาชิกเสร็จเรียบร้อย'
+        });
+        alertPopup.then(function(res) {
           $state.go('login');
-        };
+        });
+      };
+      $scope.FailAlert = function() {
+        var alertPopup = $ionicPopup.alert({
+          title: '',
+          template: 'กรุณากรอกข้อมูลให้ถูกต้อง'
+        });
+      };
+      var registers = "http://localhost:3000/insertUSer";
+      console.log(registers);
+      $scope.username = username2.value;
+      $scope.password = password2.value;
+      $scope.Name = name2.value;
+      $scope.email = email2.value;
+      $scope.faculty = faculty2.value;
+      $scope.tel = tel2.value;
+
+      var parameter = ({
+        'username': $scope.username,
+        'password': $scope.password,
+        'Name': $scope.Name,
+        'email': $scope.email,
+        'working': $scope.faculty,
+        'tel': $scope.tel
+      });
+      console.log(parameter);
+      if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
+        $scope.FailAlert();
+      } else {
+        $http({
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+          },
+          url: registers,
+          data: parameter
+        }).success(function(response) {
+          console.log(parameter);
+          console.log(response);
+          $scope.showAlert();
+        });
+      }
+    };
+    $scope.canCel = function() {
+      $state.go('login');
+    };
   })
   .controller('ProfileCtrl', function($rootScope, $scope, $state, $ionicPopup, $http, $ionicHistory) {
     $scope.canCel = function(res) {
@@ -175,8 +175,8 @@ angular.module('Roomreservation.controllers', [])
     $scope.email = pfemail.value;
     $scope.SID = pfSID.value;
 
-    $scope.doProfile = function() {
-      var update = "http://localhost:3000/profile/" + $rootScope.Users.username;
+    $scope.doProfile = function(pfData) {
+      var update = "http://localhost:3000/upd/" + $rootScope.Users._id;
       console.log(update);
       console.log('password=' + pfpassword.value);
       console.log('name=' + pfName.value);
@@ -185,8 +185,6 @@ angular.module('Roomreservation.controllers', [])
       console.log(pfemail.value);
       console.log(pfSID.value);
       /*if ($scope.password == $rootScope.Users.password) {
-
-
       } else {
         console.log('invalid');
         $scope.showAlertFail();
@@ -208,7 +206,7 @@ angular.module('Roomreservation.controllers', [])
         url: update,
         data: updata
       })
-      $http.post(update, {}).success(function(response) {
+      $http.post(update, {updata}).success(function(response) {
         console.log('pass');
         $scope.showConfirm = function() {
           confirmPopup();
@@ -253,7 +251,21 @@ angular.module('Roomreservation.controllers', [])
 
       var reserved = "http://localhost:3000/insertRRS";
       $scope.namer = roomid._id;
+      //////////////////////////////////
       $http({
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8'
+        },
+        url: registers,
+        data: parameter
+      }).success(function(response) {
+        console.log(parameter);
+        console.log(response);
+        $scope.showAlert();
+      });
+      ///////////////////////////////////
+  /*    $http({
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -265,13 +277,13 @@ angular.module('Roomreservation.controllers', [])
             'times': $rootScope.time,
             'RoomId': $scope.namer,
             'Confirmdate': $scope.sday
-          }
+          },
         })
         .success(function(response) {
           $scope.showAlert();
           console.log(data);
           console.log('OK', response);
-        });
+        });*/
     };
   })
 
@@ -306,7 +318,6 @@ angular.module('Roomreservation.controllers', [])
       if ($scope.sroom && $rootScope.sday && $scope.snum && $rootScope.time) {
         var searchData = "http://localhost:3000/S/" + $scope.sroom + "/" + $scope.time + "/" + $rootScope.sday + "/" + $scope.snum;
         console.log(searchData);
-
         $http.get(searchData).success(function(ch) {
           $rootScope.ALL = ch;
           $state.go('playlists', {
@@ -345,13 +356,14 @@ angular.module('Roomreservation.controllers', [])
         console.log("http://localhost:3000/showJsonRRS/" + $scope.Reserved.RoomId + ',' + $scope.roomdetail);
       });
     });
+
+    $scope.detailreserved = reserv + roomdetail;
     // delete by id //
     $scope.del = function(dell) {
       var deldata = "http://localhost:3000/deleteRRS/" + dell;
       console.log(deldata);
       $http.post(deldata).success(function(reserv) {
         console.log(reserv);
-
       });
       $scope.showAlert();
     };
