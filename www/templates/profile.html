@@ -1,23 +1,23 @@
 <ion-view title="ตั้งค่าโปรไฟล์" id="profile">
   <ion-content>
-    <div class="spacer" style="width: 300px; height: 15px;"></div>
+    <div class="spacer" style="height: 5px;"></div>
     <form class="list" ng-submit="doProfile()">
       <ion-list>
         <label class="item item-input">
           <span class="input-label">ชื่อ - สกุล</span>
-          <input ng-model="Users.Name" id="pfName" type="text">
+          <input ng-model="Users.Name" type="text">
         </label>
         <label class="item item-input">
           <span class="input-label">อีเมล</span>
-          <input ng-model="Users.email" id="pfemail" type="email">
+          <input ng-model="Users.email" type="email">
         </label>
         <label class="item item-input">
           <span class="input-label">รหัสนักศึกษา</span>
-          <input ng-model="Users.SID" id="pfSID" type="text" pattern="\d{8}">
+          <input ng-model="Users.SID" type="text" pattern="\d{8}">
         </label>
         <label class="item item-select">
           <span class="input-label">คณะ</span>
-          <select ng-model="Users.faculty" id="pffaculty">
+          <select ng-model="Users.faculty">
           <option value="engi">คณะวิศวกรรมศาสตร์</option>
           <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
           <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
@@ -33,19 +33,19 @@
         </label>
         <label class="item item-input">
           <span class="input-label">โทรศัพท์</span>
-          <input type="tel" ng-model="Users.tel" id="pftel">
+          <input type="tel" ng-model="Users.tel">
         </label>
         <label class="item item-input">
         <span class="input-label">รหัสผ่านเดิม</span>
-        <input id="pfpassword" type="password">
+        <input type="password">
       </label>
         <label class="item item-input">
         <span class="input-label">รหัสผ่านใหม่</span>
-        <input ng-model="password" id="password" type="password">
+        <input ng-model="Users.password" type="password">
       </label>
       </ion-list>
       <div>
-        <button class="button button-positive button-block" type="submit" href="#">ตกลง</button>
+        <button class="button button-positive button-block" type="submit">ตกลง</button>
         <button class="button button-positive button-block" ng-click="canCel()">ยกเลิก</button>
       </div>
     </form>

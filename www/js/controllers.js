@@ -2,8 +2,8 @@ angular.module('Roomreservation.controllers', [])
 
   .controller('AppCtrl', function($scope, $rootScope, $timeout, $http, $ionicLoading, $state) {
     $scope.Logout = function() {
+      alert("ออกจากระบบเรียบร้อยแล้ว");
       window.localStorage.removeItem("profile");
-      alert("ออกจากระบบ");
       $scope.data = {};
 
       window.localStorage.setItem("role", true);
@@ -158,44 +158,33 @@ angular.module('Roomreservation.controllers', [])
       });
       $state.go('app.search');
     };
-    $scope.showAlertFail = function() {
-      var alertPopup = $ionicPopup.alert({
-        title: '',
-        template: 'แก้ไขข้อมูลเรียบร้อยแล้ว'
+    $scope.showConfirm = function() {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'ยืนยันการแก้ไขข้อมูล',
+        template: 'เลือก OK เพื่อยืนยันการแก้ไขข้อมูลหรือ Cancel เพื่อยกเลิก'
       });
-      alertPopup.then(function(res) {
-        //  window.location.reload(true);
+
+      confirmPopup.then(function(res) {
+        if (res) {
+          window.location.reload(true);
+          console.log('sure');
+        } else {
+          console.log('not sure');
+        }
       });
     };
-    $rootScope.Users
-    $scope.password = pfpassword.value;
-    $scope.Name = pfName.value;
-    $scope.tel = pftel.value;
-    $scope.faculty = pffaculty.value;
-    $scope.email = pfemail.value;
-    $scope.SID = pfSID.value;
 
-    $scope.doProfile = function(pfData) {
-      var update = "http://localhost:3000/upd/" + $rootScope.Users._id;
-      console.log(update);
-      console.log('password=' + pfpassword.value);
-      console.log('name=' + pfName.value);
-      console.log(pftel.value);
-      console.log(pffaculty.value);
-      console.log(pfemail.value);
-      console.log(pfSID.value);
-      /*if ($scope.password == $rootScope.Users.password) {
-      } else {
-        console.log('invalid');
-        $scope.showAlertFail();
-      }*/
+    $rootScope.Users
+
+var update = "http://localhost:3000/profile/" + $rootScope.Users.username;
+console.log(update);
+    $scope.doProfile = function() {
       var updata = {
-        'password': $scope.password,
-        'Name': $scope.Name,
-        'tel': $scope.tel,
-        'faculty': $scope.faculty,
-        'email': $scope.email,
-        'SID': $scope.SID
+        'Name': $scope.Users.Name,
+        'tel': $scope.Users.tel,
+        'faculty': $scope.Users.faculty,
+        'email': $scope.Users.email,
+        'SID': $scope.Users.SID
       };
 
       $http({
@@ -205,25 +194,9 @@ angular.module('Roomreservation.controllers', [])
         },
         url: update,
         data: updata
-      })
-      $http.post(update, {updata}).success(function(response) {
-        console.log('pass');
-        $scope.showConfirm = function() {
-          confirmPopup();
-          var confirmPopup = $ionicPopup.confirm({
-            title: '',
-            template: 'ยืนยันการแก้ไข'
-          });
-
-          confirmPopup.then(function(res) {
-            if (res) {
-              window.location.reload(true);
-              console.log('You are sure');
-            } else {
-              console.log('You are not sure');
-            }
-          });
-        };
+      }).success(function(response) {
+        console.log('pass'+response);
+        $scope.showConfirm();
       });
     };
   })
@@ -247,18 +220,27 @@ angular.module('Roomreservation.controllers', [])
     console.log($rootScope.sday);
     $rootScope.sday = $scope.sday;
     $scope.reserved = function(roomid) {
-      console.log("ID ROOM" + roomid._id);
+      console.log("ID ROOM" + roomid.Roomname);
 
       var reserved = "http://localhost:3000/insertRRS";
-      $scope.namer = roomid._id;
+      $scope.idr = roomid._id;
+      $scope.namer = roomid.Roomname;
+
       //////////////////////////////////
       $http({
         method: "POST",
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
         },
-        url: registers,
-        data: parameter
+        url: reserved,
+        data: {
+          'username': $rootScope.Users.username,
+          'User': $rootScope.Users.Name,
+          'times': $rootScope.time,
+          'Roomname': $scope.namer,
+          'RoomId': $scope.idr,
+          'Confirmdate': $scope.sday
+        }
       }).success(function(response) {
         console.log(parameter);
         console.log(response);
@@ -288,7 +270,6 @@ angular.module('Roomreservation.controllers', [])
   })
 
   .controller('SplashController', function($scope, $stateParams) {})
-
 
   .controller('PlaylistCtrl', function($scope, $timeout, $http, $stateParams, $rootScope) {})
 
