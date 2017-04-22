@@ -20,7 +20,7 @@
           <select ng-model="Users.faculty">
           <option value="engi">คณะวิศวกรรมศาสตร์</option>
           <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
-          <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
+          <option value="ided">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
           <option value="scient">คณะวิทยาศาสตร์</option>
           <option value="agotech">คณะเทคโนโลยีการเกษตร</option>
           <option value="agoins">คณะอุตสาหกรรมเกษตร</option>
@@ -28,6 +28,7 @@
           <option value="inter">วิทยาลัยนานาชาติ</option>
           <option value="nano">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
           <option value="business">วิทยาลัยการบริหารและจัดการ</option>
+          <option value="Liberalarts">คณะศิลปศาสตร์</option>
           <option value="office">สำนักงานอธิการบดี</option>
           </select>
         </label>
@@ -36,11 +37,7 @@
           <input type="tel" ng-model="Users.tel">
         </label>
         <label class="item item-input">
-        <span class="input-label">รหัสผ่านเดิม</span>
-        <input type="password">
-      </label>
-        <label class="item item-input">
-        <span class="input-label">รหัสผ่านใหม่</span>
+        <span class="input-label">รหัสผ่าน</span>
         <input ng-model="Users.password" type="password">
       </label>
       </ion-list>

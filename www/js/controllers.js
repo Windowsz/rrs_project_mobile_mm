@@ -97,6 +97,8 @@ angular.module('Roomreservation.controllers', [])
   .controller('Reg2Ctrl', function($rootScope, $scope, $state, $ionicPopup, $http) {
 
     $scope.regist = function() {
+      console.log('value'+checkerule2.value);
+      console.log('chk'+$scope.rule);
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
           title: '',
@@ -120,6 +122,7 @@ angular.module('Roomreservation.controllers', [])
       $scope.email = email2.value;
       $scope.faculty = faculty2.value;
       $scope.tel = tel2.value;
+      $scope.rule = checkerule2.value;
 
       var parameter = ({
         'username': $scope.username,
@@ -130,9 +133,13 @@ angular.module('Roomreservation.controllers', [])
         'tel': $scope.tel
       });
       console.log(parameter);
-      if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
+      if ($scope.rule !='on' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
         $scope.FailAlert();
-      } else {
+      }
+      if ($scope.rule !='on' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
+
+      }
+      else {
         $http({
           method: "POST",
           headers: {
@@ -158,19 +165,14 @@ angular.module('Roomreservation.controllers', [])
       });
       $state.go('app.search');
     };
-    $scope.showConfirm = function() {
-      var confirmPopup = $ionicPopup.confirm({
-        title: 'ยืนยันการแก้ไขข้อมูล',
-        template: 'เลือก OK เพื่อยืนยันการแก้ไขข้อมูลหรือ Cancel เพื่อยกเลิก'
-      });
 
-      confirmPopup.then(function(res) {
-        if (res) {
-          window.location.reload(true);
-          console.log('sure');
-        } else {
-          console.log('not sure');
-        }
+    $scope.ConfirmProfile = function() {
+      var alertPopup = $ionicPopup.alert({
+        title: 'แก้ไขข้อมูลส่วนตัว',
+        template: 'แก้ไขข้อมูลส่วนตัวเรียบร้อยแล้ว'
+      });
+      alertPopup.then(function(res) {
+        window.location.reload(true);
       });
     };
 
@@ -184,7 +186,8 @@ console.log(update);
         'tel': $scope.Users.tel,
         'faculty': $scope.Users.faculty,
         'email': $scope.Users.email,
-        'SID': $scope.Users.SID
+        'SID': $scope.Users.SID,
+        'password': $scope.Users.password
       };
 
       $http({
@@ -196,11 +199,12 @@ console.log(update);
         data: updata
       }).success(function(response) {
         console.log('pass'+response);
-        $scope.showConfirm();
+        $scope.ConfirmProfile();
       });
     };
   })
   .controller('PlaylistsCtrl', function($rootScope, $ionicViewSwitcher, $ionicHistory, $scope, $stateParams, $http) {
+    ///////////////////////////////////////////
     $rootScope.goBackState = function() {
       $ionicViewSwitcher.nextDirection('back');
       $ionicHistory.goBack();
@@ -246,26 +250,6 @@ console.log(update);
         console.log(response);
         $scope.showAlert();
       });
-      ///////////////////////////////////
-  /*    $http({
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          url: reserved,
-          data: {
-            'username': $rootScope.Users.username,
-            'User': $rootScope.Users.Name,
-            'times': $rootScope.time,
-            'RoomId': $scope.namer,
-            'Confirmdate': $scope.sday
-          },
-        })
-        .success(function(response) {
-          $scope.showAlert();
-          console.log(data);
-          console.log('OK', response);
-        });*/
     };
   })
 
@@ -332,14 +316,8 @@ console.log(update);
     $http.get("http://localhost:3000/showJsonRRS/" + $rootScope.Users.username).success(function(reserv) {
       $scope.Reserved = reserv;
       console.log(reserv);
-      $http.get("http://localhost:3000/showJsonRRS/" + $scope.Reserved.RoomId).success(function(roomdetail) {
-        $scope.roomdetail = roomdetail;
-        console.log("http://localhost:3000/showJsonRRS/" + $scope.Reserved.RoomId + ',' + $scope.roomdetail);
-      });
     });
-
-    $scope.detailreserved = reserv + roomdetail;
-    // delete by id //
+      // delete by id //
     $scope.del = function(dell) {
       var deldata = "http://localhost:3000/deleteRRS/" + dell;
       console.log(deldata);

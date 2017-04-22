@@ -31,7 +31,7 @@
           <select ng-model="faculty2" id="faculty2">
           <option value="engi">คณะวิศวกรรมศาสตร์</option>
           <option value="arch">คณะสถาปัตยกรรมศาสตร์</option>
-          <option value="ided">คณะครุศาสตร์อุตสาหกรรม</option>
+          <option value="ided">คณะครุศาสตร์อุตสาหกรรมและเทคโนโลยี</option>
           <option value="scient">คณะวิทยาศาสตร์</option>
           <option value="agotech">คณะเทคโนโลยีการเกษตร</option>
           <option value="agoins">คณะอุตสาหกรรมเกษตร</option>
@@ -39,6 +39,7 @@
           <option value="inter">วิทยาลัยนานาชาติ</option>
           <option value="nano">วิทยาลัยนาโนเทคโนโลยีพระจอมเกล้าลาดกระบัง</option>
           <option value="business">วิทยาลัยการบริหารและจัดการ</option>
+          <option value="Liberalarts">คณะศิลปศาสตร์</option>
           <option value="office">สำนักงานอธิการบดี</option>
           </select>
         </label>
@@ -51,14 +52,14 @@
             ไม่นําอุปกรณ์ไฟฟ้าใดๆ มาใช้ภายในห้อง ยกเว้นเครื่องคอมพิวเตอร์พกพา (Notebook)<br>9. โปรดช่วยกันดูแลการเปิดปิดไฟฟ้า เครื่องปรับอากาศ และรักษาความสะอาดทุกครั้งที่ใช้ห้อง<br>10. ผู้ใช้บริการต้องนําปากกาไวท์บอร์ดมาเอง<br>11. หากเจ้าหน้าที่ตรวจพบการกระทําใดๆ
             ที่ไม่เป็นไปตามข้อปฏิบัติข้างต้น สํานักหอสมุดกลางจะตัดสิทธิการใช้บริการ ห้องสัมมนากลุ่มย่อยของท่าน ในภาคการศึกษานั้นๆ
           </div>
-          <li class="item item-checkbox  checkbox-calm">
+          <li class="item item-checkbox checkbox-balanced">
             ยอมรับข้อตกลง
             <label class="checkbox">
-        <input type="checkbox" ng-model="checked">
+        <input type="checkbox" id="checkerule2">
         </label>
           </li>
           <br>
-          <button ng-disabled="!checked" class="button button-block button-positive" ng-click="regist()">สมัครสมาชิก</button>
+          <button class="button button-block button-positive" ng-click="regist()" type="submit">สมัครสมาชิก</button>
           <button class="button button-block button-assertive" ng-click="canCel()">ยกเลิก</button>
         </ion-item>
       </div>
