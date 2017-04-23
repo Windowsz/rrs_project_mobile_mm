@@ -133,13 +133,9 @@ angular.module('Roomreservation.controllers', [])
         'tel': $scope.tel
       });
       console.log(parameter);
-      if ($scope.rule !='on' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
+      if ($scope.rule !='' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
         $scope.FailAlert();
-      }
-      if ($scope.rule !='on' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
-
-      }
-      else {
+      } else {
         $http({
           method: "POST",
           headers: {
@@ -318,10 +314,10 @@ console.log(update);
       console.log(reserv);
     });
       // delete by id //
-    $scope.del = function(dell) {
-      var deldata = "http://localhost:3000/deleteRRS/" + dell;
+    $scope.deletes = function() {
+      var deldata = "http://localhost:3000/deleteRRS/" + $scope.Reserved._id;
       console.log(deldata);
-      $http.post(deldata).success(function(reserv) {
+      $http.delete(deldata).success(function(reserv) {
         console.log(reserv);
       });
       $scope.showAlert();
