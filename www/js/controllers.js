@@ -5,8 +5,6 @@ angular.module('Roomreservation.controllers', [])
       alert("ออกจากระบบเรียบร้อยแล้ว");
       window.localStorage.removeItem("profile");
       $scope.data = {};
-
-      window.localStorage.setItem("role", true);
       // $state.reload();
       $state.go('login', {}, {
         reload: true
@@ -17,26 +15,16 @@ angular.module('Roomreservation.controllers', [])
     var response = angular.fromJson(window.localStorage.getItem("profile"));
     $rootScope.Users = response;
     console.log($rootScope.Users);
-    // With the new view caching in Ionic, Controllers are only called
-    // when they are recreated or on app start, instead of every page change.
-    // To listen for when this page is active (for example, to refresh data),
-    // listen for the $ionicView.enter event:
-    //$scope.$on('$ionicView.enter', function(e) {
-    //});
   })
 
   .controller('ForgotpassCtrl', function($scope, $stateParams) {})
 
-  .controller('RegchooseCtrl', function($scope, $stateParams, $rootScope, $ionicViewSwitcher, $ionicHistory) {
-    /*  $rootScope.goBackState = function(){
-      $ionicViewSwitcher.nextDirection('back');
-      $ionicHistory.goBack();
-    };*/
-  })
+  .controller('RegchooseCtrl', function($scope, $stateParams, $rootScope, $ionicViewSwitcher, $ionicHistory) {})
 
   .controller('Reg1Ctrl', function($rootScope, $scope, $state, $ionicPopup, $http) {
 
     $scope.regist = function() {
+
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
           title: '',
@@ -44,6 +32,7 @@ angular.module('Roomreservation.controllers', [])
         });
         alertPopup.then(function(res) {
           $state.go('login');
+          window.location.reload(true);
         });
       };
       $scope.FailAlert = function() {
@@ -74,7 +63,8 @@ angular.module('Roomreservation.controllers', [])
       console.log(parameter);
       if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.SID || !$scope.faculty || !$scope.tel) {
         $scope.FailAlert();
-      } else {
+      }
+      else {
         $http({
           method: "POST",
           headers: {
@@ -83,7 +73,6 @@ angular.module('Roomreservation.controllers', [])
           url: registers,
           data: parameter
         }).success(function(response) {
-          console.log(parameter);
           console.log(response);
           $scope.showAlert();
         });
@@ -91,14 +80,12 @@ angular.module('Roomreservation.controllers', [])
     };
     $scope.canCel = function() {
       $state.go('login');
+      window.location.reload(true);
     };
   })
 
   .controller('Reg2Ctrl', function($rootScope, $scope, $state, $ionicPopup, $http) {
-
     $scope.regist = function() {
-      console.log('value'+checkerule2.value);
-      console.log('chk'+$scope.rule);
       $scope.showAlert = function() {
         var alertPopup = $ionicPopup.alert({
           title: '',
@@ -106,6 +93,7 @@ angular.module('Roomreservation.controllers', [])
         });
         alertPopup.then(function(res) {
           $state.go('login');
+          window.location.reload(true);
         });
       };
       $scope.FailAlert = function() {
@@ -122,7 +110,6 @@ angular.module('Roomreservation.controllers', [])
       $scope.email = email2.value;
       $scope.faculty = faculty2.value;
       $scope.tel = tel2.value;
-      $scope.rule = checkerule2.value;
 
       var parameter = ({
         'username': $scope.username,
@@ -133,7 +120,7 @@ angular.module('Roomreservation.controllers', [])
         'tel': $scope.tel
       });
       console.log(parameter);
-      if ($scope.rule !='' && !$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
+      if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.faculty || !$scope.tel) {
         $scope.FailAlert();
       } else {
         $http({
@@ -152,6 +139,7 @@ angular.module('Roomreservation.controllers', [])
     };
     $scope.canCel = function() {
       $state.go('login');
+      window.location.reload(true);
     };
   })
   .controller('ProfileCtrl', function($rootScope, $scope, $state, $ionicPopup, $http, $ionicHistory) {
@@ -160,6 +148,7 @@ angular.module('Roomreservation.controllers', [])
         disableBack: true
       });
       $state.go('app.search');
+      window.location.reload(true);
     };
 
     $scope.ConfirmProfile = function() {
