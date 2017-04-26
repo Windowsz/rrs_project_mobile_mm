@@ -188,7 +188,7 @@ console.log(update);
       });
     };
   })
-  .controller('PlaylistsCtrl', function($rootScope, $ionicViewSwitcher, $ionicHistory, $scope, $stateParams, $http) {
+  .controller('PlaylistsCtrl', function($rootScope, $ionicViewSwitcher, $ionicHistory, $scope, $stateParams, $http, $ionicPopup, $state) {
     ///////////////////////////////////////////
     $rootScope.goBackState = function() {
       $ionicViewSwitcher.nextDirection('back');
@@ -196,7 +196,7 @@ console.log(update);
       window.location.reload(true);
     };
 
-    $scope.showAlert = function() {
+    $scope.AlertReserve = function() {
       var alertPopup = $ionicPopup.alert({
         title: '',
         template: 'จองห้องเสร็จเรียบร้อยแล้ว'
@@ -209,6 +209,7 @@ console.log(update);
     console.log($rootScope.sday);
     $rootScope.sday = $scope.sday;
     $scope.reserved = function(roomid) {
+      $scope.AlertReserve();
       console.log("ID ROOM" + roomid.Roomname);
 
       var reserved = "http://localhost:3000/insertRRS";
@@ -231,9 +232,8 @@ console.log(update);
           'Confirmdate': $scope.sday
         }
       }).success(function(response) {
-        console.log(parameter);
+
         console.log(response);
-        $scope.showAlert();
       });
     };
   })
@@ -284,16 +284,6 @@ console.log(update);
   .controller('CancelCtrl', function($state, $scope, $stateParams, $http, $rootScope, $ionicPopup) {
     // get reserved data //
 
-    $scope.showAlert = function() {
-      var alertPopup = $ionicPopup.alert({
-        title: '',
-        template: 'ลบการจองห้องเรียบร้อยแล้ว'
-      });
-      alertPopup.then(function(res) {
-        window.location.reload(true);
-      });
-    };
-
     //////
     $rootScope.Users.Name
     //////////////////////// get detail of room/////////////////////////////////////////////////
@@ -303,13 +293,26 @@ console.log(update);
       console.log(reserv);
     });
       // delete by id //
-    $scope.deletes = function() {
-      var deldata = "http://localhost:3000/deleteRRS/" + $scope.Reserved._id;
-      console.log(deldata);
-      $http.delete(deldata).success(function(reserv) {
-        console.log(reserv);
+    $scope.deleter = function(dele) {
+    var confirmPopup = $ionicPopup.confirm({
+      title: 'ยกเลิกการจองห้อง',
+      template: 'กดป่มยืนยันเพื่อยกเลิกการจองห้องนี้'
+    });
+    confirmPopup.then(function(res) {
+
+      if(res) {
+        console.log('ok');
+        $scope.deles = dele;
+        var deldata = "http://localhost:3000/deleteRRS/" + $scope.deles;
+        console.log(deldata);
+        $http.post(deldata).success(function(reserv) {
+          console.log(reserv);
+        });
+        window.location.reload(true);
+      } else {
+        console.log('Cancel');
+        }
       });
-      $scope.showAlert();
     };
   })
 

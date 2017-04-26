@@ -4,23 +4,23 @@
     <ion-nav-title>สมัครสมาชิก</ion-nav-title>
   </ion-nav-bar>
   <ion-content padding="true" class="has-header">
-    <form class="list" name="register2" ng-submit="regist()" novalidate>
+    <form class="list" name="register2" ng-submit="regist()">
       <ion-list>
         <label class="item item-input">
           <span class="input-label">ชื่อ - สกุล</span>
-          <input ng-model="reg2.name" id="name2" name="name2" type="text" ng-pattern="/[ก-ฮ,็-์,ะ-ไ,A-Z,a-z]/" required>
+          <input ng-model="reg2.name" id="name2" name="name2" type="text" ng-pattern="/[ก-ฮ,็-์,ะ-ไ,A-Z,a-z]/">
         </label>
         <label class="item item-input">
           <span class="input-label">Username</span>
-          <input ng-model="reg2.username" id="username2" name="username2" type="text" ng-pattern="/[a-z,A-Z,0-9]/" required>
+          <input ng-model="reg2.username" id="username2" name="username2" type="text" ng-pattern="/[a-z,A-Z,0-9]/">
         </label>
         <label class="item item-input">
           <span class="input-label">Password</span>
-          <input ng-model="reg2.password" id="password2" name="password2" type="password" ng-pattern="/\S/" required>
+          <input ng-model="reg2.password" id="password2" name="password2" type="password" ng-pattern="/\S/">
         </label>
         <label class="item item-input">
           <span class="input-label">อีเมล</span>
-          <input ng-model="reg2.email" id="email2" name"email2" type="email" placeholder="example@kmitl.ac.th" ng-pattern="/\w+@+\w+.+\w/" required>
+          <input ng-model="reg2.email" id="email2" name"email2" type="email" placeholder="example@kmitl.ac.th" ng-pattern="/\w+@+\w+.+\w/">
         </label>
         <label class="item item-input">
           <span class="input-label">โทรศัพท์</span>
@@ -60,8 +60,7 @@
         </label>
           </li>
           <br>
-          <br>
-          <input type="submit" ng-disabled="!checked" class="button button-block button-positive" value="สมัครสมาชิก">
+          <button type="submit" ng-disabled="!checked" class="button button-block button-positive">สมัครสมาชิก</button>
           <button class="button button-block button-assertive" ng-click="canCel()">ยกเลิก</button>
         </ion-item>
       </div>
