@@ -63,8 +63,7 @@ angular.module('Roomreservation.controllers', [])
       console.log(parameter);
       if (!$scope.username || !$scope.password || !$scope.Name || !$scope.email || !$scope.SID || !$scope.faculty || !$scope.tel) {
         $scope.FailAlert();
-      }
-      else {
+      } else {
         $http({
           method: "POST",
           headers: {
@@ -163,8 +162,8 @@ angular.module('Roomreservation.controllers', [])
 
     $rootScope.Users
 
-var update = "http://localhost:3000/profile/" + $rootScope.Users.username;
-console.log(update);
+    var update = "http://localhost:3000/profile/" + $rootScope.Users.username;
+    console.log(update);
     $scope.doProfile = function() {
       var updata = {
         'Name': $scope.Users.Name,
@@ -183,7 +182,7 @@ console.log(update);
         url: update,
         data: updata
       }).success(function(response) {
-        console.log('pass'+response);
+        console.log('pass' + response);
         $scope.ConfirmProfile();
       });
     };
@@ -203,6 +202,7 @@ console.log(update);
       });
       alertPopup.then(function(res) {
         $state.go('app.cancel');
+        window.location.reload(true);
       });
     };
 
@@ -240,7 +240,9 @@ console.log(update);
 
   .controller('SplashController', function($scope, $stateParams) {})
 
-  .controller('PlaylistCtrl', function($scope, $timeout, $http, $stateParams, $rootScope) {})
+  .controller('PlaylistCtrl', function($scope, $timeout, $http, $stateParams, $rootScope) {
+
+  })
 
   .controller('SearchCtrl', function($scope, $rootScope, $http, $state, $ionicViewSwitcher, $ionicHistory, $ionicPopup) {
     ////////////////////////// aleart ////////////////////////////////////////////////
@@ -291,26 +293,33 @@ console.log(update);
     $http.get("http://localhost:3000/showJsonRRS/" + $rootScope.Users.username).success(function(reserv) {
       $scope.Reserved = reserv;
       console.log(reserv);
+      $scope.chk = [];
+      if ($scope.Reserved.confirmCheck = true) {
+        $scope.chk = "อนุมัติ"
+      }
+      if ($scope.Reserved.confirmCheck = false) {
+        $scope.chk = "รอการอนุมัติ"
+      } else {}
     });
-      // delete by id //
+    // delete by id //
     $scope.deleter = function(dele) {
-    var confirmPopup = $ionicPopup.confirm({
-      title: 'ยกเลิกการจองห้อง',
-      template: 'กดป่มยืนยันเพื่อยกเลิกการจองห้องนี้'
-    });
-    confirmPopup.then(function(res) {
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'ยกเลิกการจองห้อง',
+        template: 'กดป่มยืนยันเพื่อยกเลิกการจองห้องนี้'
+      });
+      confirmPopup.then(function(res) {
 
-      if(res) {
-        console.log('ok');
-        $scope.deles = dele;
-        var deldata = "http://localhost:3000/deleteRRS/" + $scope.deles;
-        console.log(deldata);
-        $http.post(deldata).success(function(reserv) {
-          console.log(reserv);
-        });
-        window.location.reload(true);
-      } else {
-        console.log('Cancel');
+        if (res) {
+          console.log('ok');
+          $scope.deles = dele;
+          var deldata = "http://localhost:3000/deleteRRS/" + $scope.deles;
+          console.log(deldata);
+          $http.post(deldata).success(function(reserv) {
+            console.log(reserv);
+          });
+          window.location.reload(true);
+        } else {
+          console.log('Cancel');
         }
       });
     };
